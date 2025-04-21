@@ -133,7 +133,8 @@ class ClosingEntryModelAbstract(CreateUpdateMixIn, MarkdownNotesMixIn):
                         f'do not equal Debits {ce_txs_sum[TransactionModel.DEBIT]}'
             )
 
-        key_func = lambda i: (str(i.unit_model_id) if i.unit_model_id else '', i.activity if i.activity else '')
+        def key_func(i):
+            return (str(i.unit_model_id) if i.unit_model_id else '', i.activity if i.activity else '')
 
         ce_txs.sort(key=key_func)
         ce_txs_gb = groupby(ce_txs, key=key_func)

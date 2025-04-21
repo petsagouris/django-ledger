@@ -1009,14 +1009,15 @@ class IODatabaseMixIn:
             if tx_model['account__balance_type'] != tx_model['tx_type']:
                 tx_model['balance'] = -tx_model['balance']
 
-        gb_key = lambda a: (
-            a['account__uuid'],
-            a.get('journal_entry__entity_unit__uuid') if by_unit else None,
-            a.get('dt_idx').year if by_period else None,
-            a.get('dt_idx').month if by_period else None,
-            a.get('journal_entry__activity') if by_activity else None,
-            a.get('tx_type') if by_tx_type else None,
-        )
+        def gb_key(a):
+            return (
+                    a['account__uuid'],
+                    a.get('journal_entry__entity_unit__uuid') if by_unit else None,
+                    a.get('dt_idx').year if by_period else None,
+                    a.get('dt_idx').month if by_period else None,
+                    a.get('journal_entry__activity') if by_activity else None,
+                    a.get('tx_type') if by_tx_type else None,
+                )
 
         if force_queryset_sorting:
             io_result.txs_queryset = list(io_result.txs_queryset)
