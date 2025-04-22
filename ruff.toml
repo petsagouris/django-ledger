@@ -1,0 +1,44 @@
+
+line-length = 120
+
+# Target Python version based on the latest Django support
+target-version = "py313"
+
+[format]
+quote-style="single"
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "C",    # flake8-comprehensions
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "UP",   # pyupgrade
+    "N",    # pep8-naming
+    # "ANN",  # flake8-annotations
+    "ARG",  # flake8-unused-arguments
+    "ERA",  # eradicate
+    "PD",   # pandas-vet
+    "DJ",   # flake8-django
+]
+ignore = [
+    "E501", # Line too long (allow longer lines for better readability in some cases)
+    "B008", # Do not perform function calls in argument defaults
+    "B027", # Redundant list comprehension - can be useful for readability
+    "B028", # No explicit return in non-None returning function
+    # "DJ001", # Model without __str__
+    # "DJ002", # Model without get_absolute_url
+]
+
+# Allow unused variables in function definitions (often useful in Django views)
+dummy-variable-rgx = "^(_+|unused|ignored)$"
+
+[lint.per-file-ignores]
+"__init__.py" = ['F403']
+
+[lint.isort]
+known-first-party = ["django_ledger"] # Replace with your Django app name
+combine-as-imports = true
