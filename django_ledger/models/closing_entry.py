@@ -392,7 +392,6 @@ class ClosingEntryTransactionModelAbstract(CreateUpdateMixIn):
 
     activity = models.CharField(max_length=20,
                                 choices=JournalEntryModel.ACTIVITIES,
-                                null=True,
                                 blank=True,
                                 verbose_name=_('Activity'))
     tx_type = models.CharField(choices=TransactionModel.TX_TYPE,

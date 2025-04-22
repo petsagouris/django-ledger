@@ -526,17 +526,17 @@ class ItemModelAbstract(CreateUpdateMixIn):
     uuid = models.UUIDField(default=uuid4, editable=False, primary_key=True)
     name = models.CharField(max_length=100, verbose_name=_('Item Name'))
 
-    item_id = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('Internal ID'))
+    item_id = models.CharField(max_length=50, blank=True, verbose_name=_('Internal ID'))
     item_number = models.CharField(max_length=30, editable=False, verbose_name=_('Item Number'))
-    item_role = models.CharField(max_length=10, choices=ITEM_ROLE_CHOICES, null=True, blank=True)
-    item_type = models.CharField(max_length=1, choices=ITEM_TYPE_CHOICES, null=True, blank=True)
+    item_role = models.CharField(max_length=10, choices=ITEM_ROLE_CHOICES, blank=True)
+    item_type = models.CharField(max_length=1, choices=ITEM_TYPE_CHOICES, blank=True)
 
     uom = models.ForeignKey('django_ledger.UnitOfMeasureModel',
                             verbose_name=_('Unit of Measure'),
                             on_delete=models.RESTRICT)
 
-    sku = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('SKU Code'))
-    upc = models.CharField(max_length=50, blank=True, null=True, verbose_name=_('UPC Code'))
+    sku = models.CharField(max_length=50, blank=True, verbose_name=_('SKU Code'))
+    upc = models.CharField(max_length=50, blank=True, verbose_name=_('UPC Code'))
 
     is_active = models.BooleanField(default=True, verbose_name=_('Is Active'))
 
@@ -1106,7 +1106,6 @@ class ItemTransactionModelAbstract(CreateUpdateMixIn):
     po_item_status = models.CharField(max_length=15,
                                       choices=PO_ITEM_STATUS,
                                       blank=True,
-                                      null=True,
                                       verbose_name=_('PO Item Status'))
 
     # Estimate/Contract fields...
@@ -1141,7 +1140,7 @@ class ItemTransactionModelAbstract(CreateUpdateMixIn):
                                               editable=False,
                                               verbose_name=_('Total Estimate/Contract Revenue.'),
                                               validators=[MinValueValidator(limit_value=0.0)])
-    item_notes = models.CharField(max_length=400, null=True, blank=True, verbose_name=_('Description'))
+    item_notes = models.CharField(max_length=400, blank=True, verbose_name=_('Description'))
     objects = ItemTransactionModelManager.from_queryset(queryset_class=ItemTransactionModelQuerySet)()
 
     class Meta:

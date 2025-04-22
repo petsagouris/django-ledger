@@ -182,7 +182,7 @@ class ChartOfAccountModelAbstract(SlugNameMixIn, CreateUpdateMixIn):
                                verbose_name=_('Entity'),
                                on_delete=models.CASCADE)
     active = models.BooleanField(default=True, verbose_name=_('Is Active'))
-    description = models.TextField(verbose_name=_('CoA Description'), null=True, blank=True)
+    description = models.TextField(verbose_name=_('CoA Description'), blank=True)
     objects = ChartOfAccountModelManager.from_queryset(queryset_class=ChartOfAccountModelQuerySet)()
 
     class Meta:

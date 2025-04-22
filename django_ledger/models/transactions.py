@@ -474,7 +474,6 @@ class TransactionModelAbstract(CreateUpdateMixIn):
     )
     description = models.CharField(
         max_length=100,
-        null=True,
         blank=True,
         verbose_name=_('Transaction Description'),
         help_text=_('A description to be included with this individual transaction.')

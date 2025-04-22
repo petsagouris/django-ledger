@@ -499,7 +499,6 @@ class StagedTransactionModelAbstract(CreateUpdateMixIn):
     bundle_split = models.BooleanField(default=True, verbose_name=_('Bundle Split Transactions'))
     activity = models.CharField(choices=JournalEntryModel.ACTIVITIES,
                                 max_length=20,
-                                null=True,
                                 blank=True,
                                 verbose_name=_('Proposed Activity'))
     amount = models.DecimalField(decimal_places=2,
@@ -508,8 +507,8 @@ class StagedTransactionModelAbstract(CreateUpdateMixIn):
                                  null=True,
                                  blank=True)
     amount_split = models.DecimalField(decimal_places=2, max_digits=15, null=True, blank=True)
-    name = models.CharField(max_length=200, blank=True, null=True)
-    memo = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200, blank=True)
+    memo = models.CharField(max_length=200, blank=True)
 
     account_model = models.ForeignKey('django_ledger.AccountModel',
                                       on_delete=models.RESTRICT,

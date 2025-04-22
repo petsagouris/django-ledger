@@ -371,7 +371,7 @@ class JournalEntryModelAbstract(CreateUpdateMixIn):
     uuid = models.UUIDField(default=uuid4, editable=False, primary_key=True)
     je_number = models.SlugField(max_length=25, editable=False, verbose_name=_('Journal Entry Number'))
     timestamp = models.DateTimeField(verbose_name=_('Timestamp'), default=localtime)
-    description = models.CharField(max_length=70, blank=True, null=True, verbose_name=_('Description'))
+    description = models.CharField(max_length=70, blank=True, verbose_name=_('Description'))
     entity_unit = models.ForeignKey(
         'django_ledger.EntityUnitModel',
         on_delete=models.RESTRICT,
@@ -382,12 +382,11 @@ class JournalEntryModelAbstract(CreateUpdateMixIn):
     activity = models.CharField(
         choices=ACTIVITIES,
         max_length=20,
-        null=True,
         blank=True,
         editable=False,
         verbose_name=_('Activity')
     )
-    origin = models.CharField(max_length=30, blank=True, null=True, verbose_name=_('Origin'))
+    origin = models.CharField(max_length=30, blank=True, verbose_name=_('Origin'))
     posted = models.BooleanField(default=False, verbose_name=_('Posted'))
     locked = models.BooleanField(default=False, verbose_name=_('Locked'))
     is_closing_entry = models.BooleanField(default=False)

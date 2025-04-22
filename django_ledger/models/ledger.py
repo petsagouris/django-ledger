@@ -189,10 +189,10 @@ class LedgerModelAbstract(CreateUpdateMixIn, IOMixIn):
     """
     _WRAPPED_MODEL_KEY = 'wrapped_model'
     uuid = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-    ledger_xid = models.SlugField(allow_unicode=True, max_length=150, null=True, blank=True,
+    ledger_xid = models.SlugField(allow_unicode=True, max_length=150, blank=True,
                                   verbose_name=_('Ledger External ID'),
                                   help_text=_('User Defined Ledger ID'))
-    name = models.CharField(max_length=150, null=True, blank=True, verbose_name=_('Ledger Name'))
+    name = models.CharField(max_length=150, blank=True, verbose_name=_('Ledger Name'))
 
     entity = models.ForeignKey('django_ledger.EntityModel',
                                on_delete=models.CASCADE,

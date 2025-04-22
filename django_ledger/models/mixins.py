@@ -48,7 +48,7 @@ class SlugNameMixIn(models.Model):
                                 MinLengthValidator(limit_value=10,
                                                    message=_('Slug field must contain at least 10 characters.'))
                             ])
-    name = models.CharField(max_length=150, null=True, blank=True)
+    name = models.CharField(max_length=150, blank=True)
 
     class Meta:
         abstract = True
@@ -104,14 +104,14 @@ class ContactInfoMixIn(models.Model):
         A string used to document the contact phone.
     """
     address_1 = models.CharField(max_length=70, verbose_name=_('Address Line 1'))
-    address_2 = models.CharField(null=True, blank=True, max_length=70, verbose_name=_('Address Line 2'))
-    city = models.CharField(null=True, blank=True, max_length=70, verbose_name=_('City'))
-    state = models.CharField(null=True, blank=True, max_length=70, verbose_name=_('State/Province'))
-    zip_code = models.CharField(null=True, blank=True, max_length=20, verbose_name=_('Zip Code'))
-    country = models.CharField(null=True, blank=True, max_length=70, verbose_name=_('Country'))
-    email = models.EmailField(null=True, blank=True, verbose_name=_('Email'))
-    website = models.URLField(null=True, blank=True, verbose_name=_('Website'))
-    phone = models.CharField(max_length=30, null=True, blank=True, verbose_name=_('Phone Number'))
+    address_2 = models.CharField(blank=True, max_length=70, verbose_name=_('Address Line 2'))
+    city = models.CharField(blank=True, max_length=70, verbose_name=_('City'))
+    state = models.CharField(blank=True, max_length=70, verbose_name=_('State/Province'))
+    zip_code = models.CharField(blank=True, max_length=20, verbose_name=_('Zip Code'))
+    country = models.CharField(blank=True, max_length=70, verbose_name=_('Country'))
+    email = models.EmailField(blank=True, verbose_name=_('Email'))
+    website = models.URLField(blank=True, verbose_name=_('Website'))
+    phone = models.CharField(max_length=30, blank=True, verbose_name=_('Phone Number'))
 
     class Meta:
         abstract = True
@@ -1081,7 +1081,7 @@ class MarkdownNotesMixIn(models.Model):
     markdown_notes: str
         A string of text representing the mark-down document.
     """
-    markdown_notes = models.TextField(blank=True, null=True, verbose_name=_('Markdown Notes'))
+    markdown_notes = models.TextField(blank=True, verbose_name=_('Markdown Notes'))
 
     class Meta:
         abstract = True
@@ -1142,16 +1142,16 @@ class FinancialAccountInfoMixin(models.Model):
 
     VALID_ACCOUNT_TYPES = tuple(atc[0] for atc in ACCOUNT_TYPE_CHOICES)
 
-    account_number = models.CharField(max_length=30, null=True, blank=True,
+    account_number = models.CharField(max_length=30, blank=True,
                                       validators=[
                                           int_list_validator(sep='', message=_('Only digits allowed'))
                                       ], verbose_name=_('Account Number'))
-    routing_number = models.CharField(max_length=30, null=True, blank=True,
+    routing_number = models.CharField(max_length=30, blank=True,
                                       validators=[
                                           int_list_validator(sep='', message=_('Only digits allowed'))
                                       ], verbose_name=_('Routing Number'))
-    aba_number = models.CharField(max_length=30, null=True, blank=True, verbose_name=_('ABA Number'))
-    swift_number = models.CharField(max_length=30, null=True, blank=True, verbose_name=_('SWIFT Number'))
+    aba_number = models.CharField(max_length=30, blank=True, verbose_name=_('ABA Number'))
+    swift_number = models.CharField(max_length=30, blank=True, verbose_name=_('SWIFT Number'))
     account_type = models.CharField(choices=ACCOUNT_TYPE_CHOICES,
                                     max_length=20,
                                     default=ACCOUNT_CHECKING,
@@ -1163,7 +1163,6 @@ class FinancialAccountInfoMixin(models.Model):
 
 class TaxInfoMixIn(models.Model):
     tax_id_number = models.CharField(max_length=30,
-                                     null=True,
                                      blank=True,
                                      verbose_name=_('Tax Registration Number'))
 

@@ -122,7 +122,7 @@ class BankAccountModelAbstract(FinancialAccountInfoMixin, CreateUpdateMixIn):
     uuid = models.UUIDField(default=uuid4, editable=False, primary_key=True)
 
     # todo: rename to account_name?...
-    name = models.CharField(max_length=150, null=True, blank=True)
+    name = models.CharField(max_length=150, blank=True)
     entity_model = models.ForeignKey('django_ledger.EntityModel',
                                      on_delete=models.CASCADE,
                                      verbose_name=_('Entity Model'))

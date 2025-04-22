@@ -358,7 +358,7 @@ class BillModelAbstract(
                                    choices=BILL_STATUS,
                                    default=BILL_STATUS[0][0],
                                    verbose_name=_('Bill Status'))
-    xref = models.SlugField(null=True, blank=True, verbose_name=_('External Reference Number'))
+    xref = models.SlugField(blank=True, verbose_name=_('External Reference Number'))
     vendor = models.ForeignKey('django_ledger.VendorModel',
                                on_delete=models.CASCADE,
                                verbose_name=_('Vendor'))
